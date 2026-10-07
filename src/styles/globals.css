@@ -1,0 +1,402 @@
+@import './variables.css';
+
+/* CSS Reset & Base */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 16px;
+  scroll-behavior: auto; /* Lenis handles smooth scrolling */
+  background-color: var(--color-canvas);
+  color: var(--color-ink);
+  font-family: var(--font-primary);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  overflow-x: hidden;
+}
+
+body {
+  min-height: 100vh;
+  position: relative;
+  overflow-x: hidden;
+  background-color: var(--color-canvas);
+  color: var(--color-ink);
+  line-height: 1.6;
+}
+
+/* Lenis Recommended CSS */
+html.lenis, html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+.lenis.lenis-scrolling iframe {
+  pointer-events: none;
+}
+
+/* Editorial Grid Layout Primitives */
+.container {
+  width: 100%;
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding-left: var(--container-padding);
+  padding-right: var(--container-padding);
+}
+
+.container-fluid {
+  width: 100%;
+  padding-left: var(--container-padding);
+  padding-right: var(--container-padding);
+}
+
+.section {
+  position: relative;
+  padding-top: var(--section-padding);
+  padding-bottom: var(--section-padding);
+}
+
+.section-dark {
+  background-color: var(--color-ink);
+  color: var(--color-canvas);
+}
+
+.section-parchment {
+  background-color: var(--color-parchment);
+  color: var(--color-ink);
+}
+
+/* Editorial Grid Lines */
+.editorial-grid-bg {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image: 
+    linear-gradient(to right, rgba(122, 116, 108, 0.08) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(122, 116, 108, 0.08) 1px, transparent 1px);
+  background-size: 80px 80px;
+  opacity: 0.6;
+}
+
+.section-dark .editorial-grid-bg {
+  background-image: 
+    linear-gradient(to right, rgba(242, 238, 230, 0.04) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(242, 238, 230, 0.04) 1px, transparent 1px);
+}
+
+/* Typography Hierarchy */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-secondary);
+  font-weight: 600;
+  line-height: 1.08;
+  letter-spacing: -0.03em;
+  color: inherit;
+}
+
+.heading-display {
+  font-size: clamp(2.75rem, 7.5vw, 6.75rem);
+  font-weight: 700;
+  line-height: 0.98;
+  letter-spacing: -0.04em;
+}
+
+.heading-xl {
+  font-size: clamp(2.25rem, 5vw, 4.25rem);
+  font-weight: 600;
+  line-height: 1.05;
+  letter-spacing: -0.03em;
+}
+
+.heading-lg {
+  font-size: clamp(1.75rem, 3.5vw, 2.75rem);
+  font-weight: 600;
+  line-height: 1.15;
+  letter-spacing: -0.025em;
+}
+
+.heading-md {
+  font-size: clamp(1.25rem, 2.2vw, 1.75rem);
+  font-weight: 500;
+  line-height: 1.25;
+}
+
+.body-lead {
+  font-size: clamp(1.125rem, 1.8vw, 1.375rem);
+  line-height: 1.5;
+  font-weight: 400;
+}
+
+.body-regular {
+  font-size: 1rem;
+  line-height: 1.65;
+  color: var(--color-warm-slate);
+}
+
+.section-dark .body-regular {
+  color: var(--color-grey-cloud);
+}
+
+.body-small {
+  font-size: 0.875rem;
+  line-height: 1.5;
+  letter-spacing: 0.02em;
+}
+
+/* Editorial Metadata & Tags */
+.meta-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--font-primary);
+  font-size: 0.8125rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--color-warm-slate);
+}
+
+.section-dark .meta-tag {
+  color: var(--color-grey-cloud);
+}
+
+.meta-num {
+  font-family: var(--font-secondary);
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--color-signal);
+  letter-spacing: 0.05em;
+}
+
+/* The Signature Digilid Red Pixel / Square */
+.red-pixel {
+  display: inline-block;
+  background-color: var(--color-signal);
+  width: 9px;
+  height: 9px;
+  vertical-align: middle;
+  flex-shrink: 0;
+}
+
+.red-pixel-sm {
+  width: 6px;
+  height: 6px;
+}
+
+.red-pixel-lg {
+  width: 14px;
+  height: 14px;
+}
+
+/* Custom Cursor (Desktop Only) */
+@media (hover: hover) and (pointer: fine) {
+  body {
+    cursor: none;
+  }
+  
+  a, button, input, textarea, select, [role="button"] {
+    cursor: none;
+  }
+}
+
+.cursor-dot {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 8px;
+  height: 8px;
+  background-color: var(--color-signal);
+  border-radius: 0; /* Square / Pixel aesthetic matching Digilid guidelines */
+  pointer-events: none;
+  z-index: 9999;
+  transform: translate(-50%, -50%);
+  transition: opacity 0.2s ease;
+}
+
+.cursor-follower {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 36px;
+  height: 36px;
+  border: 1px solid rgba(17, 17, 17, 0.4);
+  pointer-events: none;
+  z-index: 9998;
+  transform: translate(-50%, -50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-secondary);
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-canvas);
+  transition: width 0.3s var(--ease-out-expo), 
+              height 0.3s var(--ease-out-expo), 
+              background-color 0.3s ease, 
+              border-color 0.3s ease,
+              opacity 0.2s ease;
+}
+
+.cursor-follower.hovering {
+  width: 64px;
+  height: 64px;
+  background-color: var(--color-ink);
+  border-color: var(--color-signal);
+}
+
+.cursor-follower.view-mode {
+  width: 80px;
+  height: 80px;
+  background-color: var(--color-signal);
+  border-color: transparent;
+  color: #ffffff;
+}
+
+.cursor-follower.cta-mode {
+  width: 72px;
+  height: 72px;
+  background-color: var(--color-ink);
+  border-color: var(--color-signal);
+  color: var(--color-canvas);
+}
+
+/* Button & Action System */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.875rem;
+  padding: 1.1rem 2rem;
+  font-family: var(--font-primary);
+  font-size: 0.9375rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  text-decoration: none;
+  border: none;
+  border-radius: 0;
+  transition: all 0.35s var(--ease-out-expo);
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-primary {
+  background-color: var(--color-ink);
+  color: var(--color-canvas);
+  border: 1px solid var(--color-ink);
+}
+
+.btn-primary:hover {
+  background-color: var(--color-signal);
+  border-color: var(--color-signal);
+  color: #ffffff;
+  transform: translateY(-2px);
+}
+
+.btn-secondary {
+  background-color: transparent;
+  color: var(--color-ink);
+  border: 1px solid var(--color-ink);
+}
+
+.btn-secondary:hover {
+  background-color: var(--color-ink);
+  color: var(--color-canvas);
+  transform: translateY(-2px);
+}
+
+.btn-light {
+  background-color: var(--color-canvas);
+  color: var(--color-ink);
+  border: 1px solid var(--color-canvas);
+}
+
+.btn-light:hover {
+  background-color: var(--color-signal);
+  border-color: var(--color-signal);
+  color: #ffffff;
+  transform: translateY(-2px);
+}
+
+.btn-signal {
+  background-color: var(--color-signal);
+  color: #ffffff;
+  border: 1px solid var(--color-signal);
+}
+
+.btn-signal:hover {
+  background-color: var(--color-ink);
+  border-color: var(--color-ink);
+  color: var(--color-canvas);
+  transform: translateY(-2px);
+}
+
+/* Underline link animation */
+.link-editorial {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: inherit;
+  text-decoration: none;
+  font-weight: 600;
+  padding-bottom: 2px;
+}
+
+.link-editorial::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background-color: currentColor;
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 0.4s var(--ease-out-expo);
+}
+
+.link-editorial:hover::after {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+/* Accessibility Focus States */
+:focus-visible {
+  outline: 2px solid var(--color-signal);
+  outline-offset: 3px;
+}
+
+/* Utility Animations */
+.reveal-text {
+  overflow: hidden;
+  display: block;
+}
+
+.reveal-text > * {
+  display: block;
+  transform: translateY(105%);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

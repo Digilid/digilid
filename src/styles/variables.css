@@ -1,0 +1,46 @@
+:root {
+  /* Digilid Official Brand Palette */
+  --color-ink: #111111;
+  --color-ink-rgb: 17, 17, 17;
+  --color-canvas: #F2EEE6;
+  --color-canvas-rgb: 242, 238, 230;
+  --color-parchment: #DDD5CB;
+  --color-parchment-rgb: 221, 213, 203;
+  --color-grey-cloud: #BDB6AC;
+  --color-grey-cloud-rgb: 189, 182, 172;
+  --color-warm-slate: #7A746C;
+  --color-warm-slate-rgb: 122, 116, 108;
+  --color-coucal: #8D5B3D;
+  --color-coucal-rgb: 141, 91, 61;
+  --color-signal: #EE2E2D;
+  --color-signal-rgb: 238, 46, 45;
+
+  /* Semantic UI mappings */
+  --bg-primary: var(--color-canvas);
+  --bg-secondary: var(--color-parchment);
+  --bg-dark: var(--color-ink);
+  --text-primary: var(--color-ink);
+  --text-secondary: var(--color-warm-slate);
+  --text-muted: var(--color-grey-cloud);
+  --border-subtle: rgba(122, 116, 108, 0.22);
+  --border-strong: rgba(17, 17, 17, 0.15);
+  --border-dark: rgba(242, 238, 230, 0.15);
+  --accent-red: var(--color-signal);
+
+  /* Typography */
+  --font-primary: 'Manrope', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-secondary: 'Sora', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+
+  /* Layout & Grid */
+  --max-width: 1440px;
+  --header-height: 84px;
+  --header-height-scrolled: 68px;
+  --grid-gap: clamp(1.5rem, 3vw, 3rem);
+  --section-padding: clamp(4rem, 8vw, 9rem);
+  --container-padding: clamp(1.25rem, 5vw, 4rem);
+
+  /* Animation Easing */
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in-out-cubic: cubic-bezier(0.65, 0, 0.35, 1);
+  --ease-smooth: cubic-bezier(0.25, 1, 0.5, 1);
+}
